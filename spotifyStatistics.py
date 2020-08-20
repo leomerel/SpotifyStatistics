@@ -6,7 +6,7 @@ import spotipy.util as util
 from json.decoder import JSONDecodeError
 
 username = '21osyakzdl363eszq54vl5csy'
-scope = 'user-read-recently-played'
+scope = 'user-read-recently-played user-top-read'
 
 # Erase cache and prompt for user permission
 try:
@@ -27,6 +27,8 @@ print("\nYou're connected to SpotifyStatistics with this account : " + userName 
 
 #Display the last 50 played tracks
 def recently_played_tracks():
+	print("Last 50 played tracks: ")
+
 	recently_played = spotifyObject.current_user_recently_played()
 	recently_played = recently_played['items']
 
@@ -38,5 +40,31 @@ def recently_played_tracks():
 	    	" (" + item['played_at'] + ')')
 	    z+=1
 
+	print("\n\n")
+
+
+#Display the most listend artists
+#	limit: from 1 to 50
+#	time_range: short_term (~1 month), medium_term (~6 months), long_term (all time)
+def top_artists(limit, time_range):
+	if time_range == 'short_term':
+		print('Most played artists for the last  4 weeks: ')
+	elif time_range == 'medium_term':
+		print('Most played artists for the last 6 months: ')
+	elif time_range == 'long_term':
+		print('Most played artists of all time: ')
+
+	top_artists = spotifyObject.current_user_top_artists(limit=limit, offset=0, time_range=time_range)
+	top_artists = top_artists['items']
+
+	z=1
+	for item in top_artists:
+	    print(str(z) + '. ' + item['name'])
+	    z+=1
+
+	print("\n\n")
+
+
 
 recently_played_tracks()
+top_artists(50, 'long_term')
