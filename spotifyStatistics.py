@@ -65,6 +65,33 @@ def top_artists(limit, time_range):
 	print("\n\n")
 
 
+#Display the most played tracks
+#	limit: from 1 to 50
+#	time_range: short_term (~1 month), medium_term (~6 months), long_term (all time)
+def top_tracks(limit, time_range):
+	if time_range == 'short_term':
+		print('Most played tracks for the last  4 weeks: ')
+	elif time_range == 'medium_term':
+		print('Most played tracks for the last 6 months: ')
+	elif time_range == 'long_term':
+		print('Most played tracks of all time: ')
+
+	top_tracks = spotifyObject.current_user_top_tracks(limit=limit, offset=0, time_range=time_range)
+	top_tracks = top_tracks['items']
+
+	#print(json.dumps(top_tracks, sort_keys=True, indent=4))
+
+	z=1
+	for item in top_tracks:
+	    print(str(z) + '. ' + 
+	    	item['name'] +
+	    	" - " + item['artists'][0]['name'])
+	    z+=1
+
+	print("\n\n")
+
+
 
 recently_played_tracks()
 top_artists(50, 'long_term')
+top_tracks(50, 'long_term')
