@@ -5,7 +5,19 @@ import spotipy
 import spotipy.util as util
 from json.decoder import JSONDecodeError
 
+class Artist:
+  def __init__(self, name, imageUrl, popularity):
+    self.name = name
+    self.popularity = popularity
+    self.imageUrl = imageUrl
 
+class Track:
+	def __init__(self, id, name, artist, imageUrl, popularity):
+		self.id = id
+		self.name = name
+		self.artist = artist
+		self.imageUrl = imageUrl
+		self.popularity = popularity
 
 def connect():
 	username = '21osyakzdl363eszq54vl5csy'
@@ -38,7 +50,7 @@ def recently_played_tracks(spotifyObject):
 	recently_played = recently_played['items']
 
 	track_list = list()
-	z=0
+	z=1
 	for item in recently_played:
 	    track_list.append(str(z) + '. ' + 
 	    	item['track']['artists'][0]['name'] +
@@ -66,8 +78,9 @@ def top_artists(spotifyObject, limit, time_range):
 	artist_list = list()
 	z=1
 	for item in top_artists:
-	    artist_list.append(str(z) + '. ' + item['name'])
-	    z+=1
+		artist = Artist(item['name'],item['images'][2]['url'],item['popularity'])
+		artist_list.append(artist)
+		z+=1
 
 	return artist_list
 
@@ -84,15 +97,15 @@ def top_tracks(spotifyObject, limit, time_range):
 		print('Most played tracks of all time: ')
 
 	top_tracks = spotifyObject.current_user_top_tracks(limit=limit, offset=0, time_range=time_range)
+	print(json.dumps(top_tracks, sort_keys=True, indent=4))
 	top_tracks = top_tracks['items']
 
 	track_list = list()
 	z=1
 	for item in top_tracks:
-	    track_list.append(str(z) + '. ' + 
-	    	item['name'] +
-	    	" - " + item['artists'][0]['name'])
-	    z+=1
+		track = Track(item['id'], item['name'], item['artists'][0]['name'], item['album']['images'][2]['url'], item['popularity'])
+		track_list.append(track)
+		z+=1
 
 	return track_list
 

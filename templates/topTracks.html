@@ -7,9 +7,17 @@
 
 {% block body %}
 	<div class="container">
-		<h1>{{title}}</h1>
-		{% for x in tracks %}
-		<p>{{x}}</p>
+		{{ i }}
+		{% set i=1 %}
+		{% for x in tracks_alltime %}
+		<div class="row">
+			<div class="col">{{loop.index}}.</div>
+		    <div class="col">
+	    		<img src={{x.imageUrl}}> 
+			</div>
+		    <div class="col-5">{{x.name}}</div>
+		    <div class="col-5">{{x.artist}}</div>
+		</div>
 		{% endfor %}
 	</div>
 {% endblock %}

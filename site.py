@@ -7,13 +7,7 @@ app = Flask(__name__)
 
 @app.route("/home")
 def home():
-	return render_template("homepage.html",
-	 artists=spotifyStatistics.top_artists(spotifyObject, 50, 'long_term'),
-	 title1="Most played artists of all time",
-	 tracks=spotifyStatistics.top_tracks(spotifyObject, 50, 'long_term'),
-	 title2="Most played tracks of all time",
-	 recentTracks=spotifyStatistics.recently_played_tracks(spotifyObject),
-	 title3="Recently played tracks")
+	return render_template("homepage.html")
 
 @app.route("/topArtists")
 def topArtists():
@@ -25,8 +19,7 @@ def topArtists():
 @app.route("/topTracks")
 def topTracks():
 	return render_template("topTracks.html",
-	 tracks=spotifyStatistics.top_tracks(spotifyObject, 50, 'long_term'),
-	 title="Most played tracks of all time")
+	 tracks_alltime=spotifyStatistics.top_tracks(spotifyObject, 50, 'long_term'))
 
 @app.route("/recentlyPlayed")
 def recentlyPlayed():
