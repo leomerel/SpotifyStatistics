@@ -1,0 +1,10 @@
+.topText{
+	text-align: center;
+}
+
+.artistImg{
+	height: auto; 
+    width: auto; 
+    max-width: 10px; 
+    max-height: 12px;
+}
