@@ -7,6 +7,9 @@
 
 {% block body %}
 	<div class="container">
-  		<img src="ressouces/background.jpg" class="img-fluid" alt="Image">
+		<h1>{{title}}</h1>
+		{% for x in recentTracks %}
+		<p>{{x}}</p>
+		{% endfor %}
 	</div>
 {% endblock %}
