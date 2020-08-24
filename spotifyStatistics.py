@@ -103,7 +103,7 @@ def top_tracks(spotifyObject, limit, time_range):
 	track_list = list()
 	z=1
 	for item in top_tracks:
-		track = Track(item['id'], item['name'], item['artists'][0]['name'], item['album']['images'][2]['url'], item['popularity'])
+		track = Track(item['id'], item['name'], item['artists'][0]['name'], item['album']['images'][0]['url'], item['popularity'])
 		track_list.append(track)
 		z+=1
 

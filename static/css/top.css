@@ -1,3 +1,7 @@
+.container-lm-1{
+	margin-bottom: 10%
+}
+
 .topText{
 	text-align: center;
 	padding-top: 4%;
@@ -59,9 +63,50 @@
     margin-bottom: 5%;
 }
 
-.row-lm-2{
+.row-lm-3{
 	display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+
+.tab-pane-lm-1{
+	padding-left: 10%;
+	padding-right: 2%;
+}
+
+.div-album-img{
+	width: 80%;
+	height: auto;
+}
+
+.row-tracks-lm-1{
+	height: 60px;
+	display: -ms-flexbox;
+    display: flex;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: 1%;
+}
+
+.vertically-centered-text{
+	display: flex;
+	align-items: center; /* align vertical */
+}
+
+.col-1-track-index{
+	-ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 8.33333%;
+    max-width: 8.333333%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.track-index{
+	margin-bottom: 0;
+	margin-left: 60%;
+    margin-right: auto;
 }

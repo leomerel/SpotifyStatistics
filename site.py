@@ -19,6 +19,8 @@ def topArtists():
 @app.route("/topTracks")
 def topTracks():
 	return render_template("topTracks.html",
+	 tracks_4weeks=spotifyStatistics.top_tracks(spotifyObject, 50, 'short_term'),
+	 tracks_6months=spotifyStatistics.top_tracks(spotifyObject, 50, 'medium_term'),
 	 tracks_alltime=spotifyStatistics.top_tracks(spotifyObject, 50, 'long_term'))
 
 @app.route("/recentlyPlayed")

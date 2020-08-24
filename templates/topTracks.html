@@ -1,23 +1,69 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<link rel="stylesheet" href="static/css/top.css?version=1" /> 
 {% endblock %}
 
 
 {% block body %}
-	<div class="container">
-		{{ i }}
-		{% set i=1 %}
-		{% for x in tracks_alltime %}
-		<div class="row">
-			<div class="col">{{loop.index}}.</div>
-		    <div class="col">
-	    		<img src={{x.imageUrl}}> 
-			</div>
-		    <div class="col-5">{{x.name}}</div>
-		    <div class="col-5">{{x.artist}}</div>
-		</div>
-		{% endfor %}
+<div class="container container-lm-1">
+	<div>
+		<h1 class="topText">Most played tracks</h1>
 	</div>
+	<nav>
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-link active nav-link-lm-1" id="nav-4weeks-tab" data-toggle="tab" href="#nav-4weeks" role="tab" aria-controls="nav-4weeks" aria-selected="true">Last 4 weeks</a>
+			<a class="nav-link nav-link-lm-1" id="nav-6months-tab" data-toggle="tab" href="#nav-6months" role="tab" aria-controls="nav-6months" aria-selected="false">Last 6 months</a>
+			<a class="nav-link nav-link-lm-1" id="nav-alltime-tab" data-toggle="tab" href="#nav-alltime" role="tab" aria-controls="nav-alltime" aria-selected="false">All time</a>
+		</div>
+	</nav>
+	<div class="tab-content tab-content-lm-1" id="nav-tabContent">
+		
+		<div class="tab-pane fade show active tab-pane-lm-1" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
+			{% for x in tracks_4weeks %}
+			<div class="row-tracks-lm-1">
+				<div class="col-1-track-index vertically-centered-text">
+					<p class="track-index">{{loop.index}}.</p>
+				</div>
+			    <div class="col-1 div-album-img">
+		    		<img src={{x.imageUrl}} class="artist-img"> 
+				</div>
+			    <div class="col-5 vertically-centered-text">{{x.name[0:40]}}</div>
+			    <div class="col-5 vertically-centered-text">{{x.artist}}</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="tab-pane fade tab-pane-lm-1" id="nav-6months" role="tabpanel" aria-labelledby="nav-6months-tab">
+			{% for x in tracks_6months %}
+			<div class="row-tracks-lm-1">
+				<div class="col-1-track-index vertically-centered-text">
+					<p class="track-index">{{loop.index}}.</p>
+				</div>
+			    <div class="col-1 div-album-img">
+		    		<img src={{x.imageUrl}} class="artist-img"> 
+				</div>
+			    <div class="col-5 vertically-centered-text">{{x.name[0:40]}}</div>
+			    <div class="col-5 vertically-centered-text">{{x.artist}}</div>
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="tab-pane fade tab-pane-lm-1" id="nav-alltime" role="tabpanel" aria-labelledby="nav-alltime-tab">
+			{% for x in tracks_alltime %}
+			<div class="row-tracks-lm-1">
+				<div class="col-1-track-index vertically-centered-text">
+					<p class="track-index">{{loop.index}}.</p>
+				</div>
+			    <div class="col-1 div-album-img">
+		    		<img src={{x.imageUrl}} class="artist-img"> 
+				</div>
+			    <div class="col-5 vertically-centered-text">{{x.name[0:40]}}</div>
+			    <div class="col-5 vertically-centered-text">{{x.artist}}</div>
+			</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</div>
 {% endblock %}
