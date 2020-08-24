@@ -1,70 +1,76 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static',filename='css/top.css') }}" />
+<link rel="stylesheet" href="static/css/top.css?version=1" /> 
 {% endblock %}
 
 
 {% block body %}
-<div class="container">
-	<div class="col-3"></div>
-	<div class="col-8">
-		<div>
-			<h1>Most played artists</h1>
+<div class="lm-1">
+	<div class="container">
+		
+			<div>
+				<h1 class="topText">Most played artists</h1>
+			</div>
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<a class="nav-link active nav-link-lm-1" id="nav-4weeks-tab" data-toggle="tab" href="#nav-4weeks" role="tab" aria-controls="nav-4weeks" aria-selected="true">Last 4 weeks</a>
+					<a class="nav-link nav-link-lm-1" id="nav-6months-tab" data-toggle="tab" href="#nav-6months" role="tab" aria-controls="nav-6months" aria-selected="false">Last 6 months</a>
+					<a class="nav-link nav-link-lm-1" id="nav-alltime-tab" data-toggle="tab" href="#nav-alltime" role="tab" aria-controls="nav-alltime" aria-selected="false">All time</a>
+				</div>
+			</nav>
+			<div class="tab-content tab-content-lm-1" id="nav-tabContent">
+				<div class="tab-pane fade show active" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
+					<div class="row-lm-1">
+						{% for x in artists_4weeks[0:5] %}
+						{% if loop.index < 6 %}
+						<div class="col">
+						    <div class="row-lm-2">
+						    	<div class="div-artist-img centered-object">
+						    		<img src={{x.imageUrl}} class="artist-img" alt="Image">
+						    	</div>
+							</div>
+						    <div class="row-lm-3">
+						    	<p class="artist-name centered-object">{{loop.index}}. {{x.name}}</p>
+							</div>
+						</div>	
+						{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+				<div class="tab-pane fade" id="nav-6months" role="tabpanel" aria-labelledby="nav-6months-tab">
+					{% for x in artists_6months %}
+					<div class="row">
+					    <div class="col">
+					    	<img src={{x.imageUrl}} class="artistImg" alt="Image">
+						</div>
+					    <div class="col">{{x.name}}</div>
+					    <div class="col">{{x.popularity}}</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="tab-pane fade" id="nav-alltime" role="tabpanel" aria-labelledby="nav-alltime-tab">
+					<div class="row">
+					    <div class="col-8">
+					    	<h3 class="tab-text-lm-1">Artists</h3>
+						</div>
+					    <div class="col-4">
+					    	<h3 class="tab-text-lm-1">Popularity</h3>
+						</div>
+					</div>
+					{% for x in artists_alltime %}
+					<div class="row">
+					    <div class="col">
+					    	<p class="artistImg">
+					    		<img src={{x.imageUrl}}> 
+				            </p> 
+						</div>
+					    <div class="col">{{x.name}}</div>
+					    <div class="col">{{x.popularity}}</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
-		<nav>
-			<div class="nav nav-tabs" id="nav-tab" role="tablist">
-				<a class="nav-link active" id="nav-4weeks-tab" data-toggle="tab" href="#nav-4weeks" role="tab" aria-controls="nav-4weeks" aria-selected="true">Last 4 weeks</a>
-				<a class="nav-link" id="nav-6months-tab" data-toggle="tab" href="#nav-6months" role="tab" aria-controls="nav-6months" aria-selected="false">Last 6 months</a>
-				<a class="nav-link" id="nav-alltime-tab" data-toggle="tab" href="#nav-alltime" role="tab" aria-controls="nav-alltime" aria-selected="false">All time</a>
-			</div>
-		</nav>
-		<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
-				{% for x in artists_4weeks %}
-				<div class="row">
-				    <div class="col">
-				    	<img src={{x.imageUrl}} class="img-fluid" alt="Image">
-					</div>
-				    <div class="col">{{x.name}}</div>
-				    <div class="col">{{x.popularity}}</div>
-				</div>	
-				{% endfor %}
-			</div>
-			<div class="tab-pane fade" id="nav-6months" role="tabpanel" aria-labelledby="nav-6months-tab">
-				{% for x in artists_6months %}
-				<div class="row">
-				    <div class="col">
-				    	<img src={{x.imageUrl}} class="artistImg" alt="Image">
-					</div>
-				    <div class="col">{{x.name}}</div>
-				    <div class="col">{{x.popularity}}</div>
-				</div>
-				{% endfor %}
-			</div>
-			<div class="tab-pane fade" id="nav-alltime" role="tabpanel" aria-labelledby="nav-alltime-tab">
-				<div class="row">
-				    <div class="col-8">
-				    	<h3 class="topText">Artists</h3>
-					</div>
-				    <div class="col-4">
-				    	<h3 class="topText">Popularity</h3>
-					</div>
-				</div>
-				{% for x in artists_alltime %}
-				<div class="row">
-				    <div class="col">
-				    	<p class="artistImg">
-				    		<img src={{x.imageUrl}}> 
-			            </p> 
-					</div>
-				    <div class="col">{{x.name}}</div>
-				    <div class="col">{{x.popularity}}</div>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-	<div class="col-3"></div>
 </div>
 {% endblock %}

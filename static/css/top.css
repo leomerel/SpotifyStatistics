@@ -1,10 +1,73 @@
 .topText{
 	text-align: center;
+	padding-top: 4%;
+	padding-bottom: 4%;
 }
 
-.artistImg{
-	height: auto; 
-    width: auto; 
-    max-width: 10px; 
-    max-height: 12px;
+.lm-1{
+	margin-right: 10%;
+	margin-left: 10%;
+	margin-bottom: 3%;
+}
+
+.nav-link-lm-1{
+	padding-left: 10%;
+	padding-right: 10%;
+	width: 33.33333333333333333333333333%; /*don't judge me*/
+	text-align: center;
+}
+
+.tab-content-lm-1{
+	margin-top: 5%;
+}
+
+.tab-text-lm-1{
+	text-align: center;
+}
+
+.artist-img{
+	position: absolute;
+	height: 100%;
+	/* center the image (in case it's not a square) */
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.div-artist-img{
+	width: 85%;
+	padding-top: 85%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.centered-object{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.artist-name{
+	text-align: center;
+}
+
+.row-lm-1{
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 2%;
+}
+
+.row-lm-2{
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 5%;
+}
+
+.row-lm-2{
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
