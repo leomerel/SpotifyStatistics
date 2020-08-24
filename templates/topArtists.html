@@ -20,6 +20,7 @@
 				</div>
 			</nav>
 			<div class="tab-content tab-content-lm-1" id="nav-tabContent">
+				
 				<div class="tab-pane fade show active" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
 					{% set artist_per_row = 5 %}
 					{% for i in range(0, ((artists_4weeks|length)/artist_per_row)|int + 1) %}
@@ -41,38 +42,51 @@
 						</div>
 					{% endfor %}
 				</div>
+
 				<div class="tab-pane fade" id="nav-6months" role="tabpanel" aria-labelledby="nav-6months-tab">
-					{% for x in artists_6months %}
-					<div class="row">
-					    <div class="col">
-					    	<img src={{x.imageUrl}} class="artistImg" alt="Image">
+					{% set artist_per_row = 5 %}
+					{% for i in range(0, ((artists_6months|length)/artist_per_row)|int + 1) %}
+						<div class="row-lm-1">
+						{% for x in artists_6months[i*artist_per_row:i*artist_per_row+artist_per_row] %}
+							{% if loop.index < 6 %}
+							<div class="col">
+							    <div class="row-lm-2">
+							    	<div class="div-artist-img centered-object">
+							    		<img src={{x.imageUrl}} class="artist-img" alt="Image">
+							    	</div>
+								</div>
+							    <div class="row-lm-3">
+							    	<p class="artist-name centered-object">{{loop.index+i*artist_per_row}}. {{x.name}}</p>
+								</div>
+							</div>	
+							{% endif %}
+						{% endfor %}
 						</div>
-					    <div class="col">{{x.name}}</div>
-					    <div class="col">{{x.popularity}}</div>
-					</div>
 					{% endfor %}
 				</div>
+
 				<div class="tab-pane fade" id="nav-alltime" role="tabpanel" aria-labelledby="nav-alltime-tab">
-					<div class="row">
-					    <div class="col-8">
-					    	<h3 class="tab-text-lm-1">Artists</h3>
+					{% set artist_per_row = 5 %}
+					{% for i in range(0, ((artists_alltime|length)/artist_per_row)|int + 1) %}
+						<div class="row-lm-1">
+						{% for x in artists_alltime[i*artist_per_row:i*artist_per_row+artist_per_row] %}
+							{% if loop.index < 6 %}
+							<div class="col">
+							    <div class="row-lm-2">
+							    	<div class="div-artist-img centered-object">
+							    		<img src={{x.imageUrl}} class="artist-img" alt="Image">
+							    	</div>
+								</div>
+							    <div class="row-lm-3">
+							    	<p class="artist-name centered-object">{{loop.index+i*artist_per_row}}. {{x.name}}</p>
+								</div>
+							</div>	
+							{% endif %}
+						{% endfor %}
 						</div>
-					    <div class="col-4">
-					    	<h3 class="tab-text-lm-1">Popularity</h3>
-						</div>
-					</div>
-					{% for x in artists_alltime %}
-					<div class="row">
-					    <div class="col">
-					    	<p class="artistImg">
-					    		<img src={{x.imageUrl}}> 
-				            </p> 
-						</div>
-					    <div class="col">{{x.name}}</div>
-					    <div class="col">{{x.popularity}}</div>
-					</div>
 					{% endfor %}
 				</div>
+
 			</div>
 		</div>
 </div>
