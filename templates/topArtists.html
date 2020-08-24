@@ -21,22 +21,25 @@
 			</nav>
 			<div class="tab-content tab-content-lm-1" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
-					<div class="row-lm-1">
-						{% for x in artists_4weeks[0:5] %}
-						{% if loop.index < 6 %}
-						<div class="col">
-						    <div class="row-lm-2">
-						    	<div class="div-artist-img centered-object">
-						    		<img src={{x.imageUrl}} class="artist-img" alt="Image">
-						    	</div>
-							</div>
-						    <div class="row-lm-3">
-						    	<p class="artist-name centered-object">{{loop.index}}. {{x.name}}</p>
-							</div>
-						</div>	
-						{% endif %}
+					{% set artist_per_row = 5 %}
+					{% for i in range(0, ((artists_4weeks|length)/artist_per_row)|int + 1) %}
+						<div class="row-lm-1">
+						{% for x in artists_4weeks[i*artist_per_row:i*artist_per_row+artist_per_row] %}
+							{% if loop.index < 6 %}
+							<div class="col">
+							    <div class="row-lm-2">
+							    	<div class="div-artist-img centered-object">
+							    		<img src={{x.imageUrl}} class="artist-img" alt="Image">
+							    	</div>
+								</div>
+							    <div class="row-lm-3">
+							    	<p class="artist-name centered-object">{{loop.index+i*artist_per_row}}. {{x.name}}</p>
+								</div>
+							</div>	
+							{% endif %}
 						{% endfor %}
-					</div>
+						</div>
+					{% endfor %}
 				</div>
 				<div class="tab-pane fade" id="nav-6months" role="tabpanel" aria-labelledby="nav-6months-tab">
 					{% for x in artists_6months %}
