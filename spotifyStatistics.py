@@ -78,7 +78,7 @@ def top_artists(spotifyObject, limit, time_range):
 	artist_list = list()
 	z=1
 	for item in top_artists:
-		artist = Artist(item['name'],item['images'][2]['url'],item['popularity'])
+		artist = Artist(item['name'],item['images'][0]['url'],item['popularity'])
 		artist_list.append(artist)
 		z+=1
 
