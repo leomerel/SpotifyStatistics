@@ -1,6 +1,7 @@
 import spotifyStatistics
 from flask import Flask, redirect, url_for, render_template, request
 from auth import startup
+from auth.flask_spotify_auth import refreshAuth
 
 app = Flask(__name__)
 global spotifyObject
@@ -19,6 +20,10 @@ def callback():
 	startup.getUserToken(request.args['code'])
 	spotifyObject = spotifyStatistics.connect()
 	return redirect("http://127.0.0.1:5000/home", code=302)
+
+@app.route("/logout")
+def logout():
+	return redirect("http://127.0.0.1:5000/", code=302)
 
 @app.route("/home")
 def home():
