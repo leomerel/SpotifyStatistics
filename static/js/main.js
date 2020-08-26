@@ -7,10 +7,12 @@ function ouvrirFenetre()
 }
 function fermerFenetreOuverte()
 {
-  fenetreOuverte.close();
+ 	fenetreOuverte.close();
 }
 
 function logout(){
+	var userImage = document.getElementById('btnLogout');
 	ouvrirFenetre()
 	setTimeout(() => fermerFenetreOuverte(), 2000)
+	setTimeout(btnLogout.click(), 3000)
 }
