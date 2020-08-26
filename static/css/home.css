@@ -1,0 +1,15 @@
+.btn-outline-failure{
+	color: #EB4F47;
+    border-color: #EB4F47;
+}
+
+.btn:hover{
+    background-color: #FFE2DC;
+    color: #EB4F47;
+    text-decoration: none;
+}
+
+.nav-item:hover{
+	border-radius: 3px;
+	background-color: #EBEBEB;
+}
