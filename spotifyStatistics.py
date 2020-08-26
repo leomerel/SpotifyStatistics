@@ -4,6 +4,7 @@ import json
 import spotipy
 import spotipy.util as util
 from json.decoder import JSONDecodeError
+from auth import startup
 
 class Artist:
   def __init__(self, name, imageUrl, popularity):
@@ -20,18 +21,10 @@ class Track:
 		self.popularity = popularity
 
 def connect():
-	username = '21osyakzdl363eszq54vl5csy'
-	scope = 'user-read-recently-played user-top-read'
-
-	# Erase cache and prompt for user permission
-	try:
-	    token = util.prompt_for_user_token(username, scope) # add scope
-	except (AttributeError, JSONDecodeError):
-	    os.remove(f".cache-{username}")
-	    token = util.prompt_for_user_token(username, scope) # add scope
+	token= startup.getAccessToken() 
 
 	# Create our spotify object with permissions
-	spotifyObject = spotipy.Spotify(auth=token)
+	spotifyObject = spotipy.Spotify(auth=token[0])
 
 	# User information
 	user = spotifyObject.current_user()
@@ -42,7 +35,7 @@ def connect():
 	return spotifyObject
 
 
-#Display the last 50 played tracks
+#Return the last 50 played tracks
 def recently_played_tracks(spotifyObject):
 	print("Last 50 played tracks: ")
 
@@ -97,7 +90,6 @@ def top_tracks(spotifyObject, limit, time_range):
 		print('Most played tracks of all time: ')
 
 	top_tracks = spotifyObject.current_user_top_tracks(limit=limit, offset=0, time_range=time_range)
-	print(json.dumps(top_tracks, sort_keys=True, indent=4))
 	top_tracks = top_tracks['items']
 
 	track_list = list()
@@ -108,8 +100,3 @@ def top_tracks(spotifyObject, limit, time_range):
 		z+=1
 
 	return track_list
-
-
-
-# recently_played_tracks()
-# top_tracks(50, 'long_term')

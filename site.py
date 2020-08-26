@@ -1,9 +1,24 @@
 import spotifyStatistics
-from flask import Flask, redirect, url_for, render_template
-
-spotifyObject = spotifyStatistics.connect()
+from flask import Flask, redirect, url_for, render_template, request
+from auth import startup
 
 app = Flask(__name__)
+global spotifyObject
+
+#The first page, to connect to your spotify account
+@app.route('/')
+def index():
+	response = startup.getUser()
+	return redirect(response)
+
+#The response redirects to /callback
+#In the end, once we are successfully connected, we redirect to the homepage
+@app.route('/callback/')
+def callback():
+	global spotifyObject
+	startup.getUserToken(request.args['code'])
+	spotifyObject = spotifyStatistics.connect()
+	return redirect("http://127.0.0.1:5000/home", code=302)
 
 @app.route("/home")
 def home():
