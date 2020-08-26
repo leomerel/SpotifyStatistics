@@ -23,16 +23,13 @@ def callback():
 	startup.getUserToken(request.args['code'])
 	spotifyObject = spotifyStatistics.connect()
 	if logoutInProgress==True:
-		print("4")
 		logoutInProgress=False
 		return redirect("http://127.0.0.1:5000/", code=302)
 	else:
-		print("5")
 		return redirect("http://127.0.0.1:5000/home", code=302)
 
 @app.route("/logoutInProgress")
 def logoutInProgress():
-	print("1")
 	return render_template("logout.html")
 
 @app.route("/logout")
@@ -40,7 +37,6 @@ def logout():
 	global logoutInProgress
 	logoutInProgress = True
 	response = startup.getUser()
-	print("2")
 	return redirect(response)
 
 @app.route("/home")
