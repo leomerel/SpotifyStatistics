@@ -45,6 +45,7 @@ def home():
 
 @app.route("/topArtists")
 def topArtists():
+	global spotifyObject
 	return render_template("topArtists.html",
 	 artists_4weeks=spotifyStatistics.top_artists(spotifyObject, 50, 'short_term'),
 	 artists_6months=spotifyStatistics.top_artists(spotifyObject, 50, 'medium_term'),
@@ -52,6 +53,7 @@ def topArtists():
 
 @app.route("/topTracks")
 def topTracks():
+	global spotifyObject
 	return render_template("topTracks.html",
 	 tracks_4weeks=spotifyStatistics.top_tracks(spotifyObject, 50, 'short_term'),
 	 tracks_6months=spotifyStatistics.top_tracks(spotifyObject, 50, 'medium_term'),
@@ -59,6 +61,7 @@ def topTracks():
 
 @app.route("/recentlyPlayed")
 def recentlyPlayed():
+	global spotifyObject
 	return render_template("recentlyPlayed.html",
 	 recentTracks=spotifyStatistics.recently_played_tracks(spotifyObject),
 	 title="Recently played tracks")
