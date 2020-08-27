@@ -8,9 +8,9 @@ To run the app, you will be asked this:
 - SPOTIPY_CLIENT_SECRET
       
 To get it, you will either need to ask mine, or create your own application (there: https://developer.spotify.com/dashboard/) and get your own.
-Then you will need to set it in the console:  
-```shell
-$ export SPOTIPY_CLIENT_SECRET=' ... ' 
+Then you will need to set it in a .env file:  
+```
+SPOTIPY_CLIENT_SECRET=' ... ' 
 ```
  
 
