@@ -1,5 +1,8 @@
 from auth.flask_spotify_auth import getAuth, refreshAuth, getToken
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 #Add your client ID
 # YOU SHOULD USE os.environ['CLIENT']
@@ -7,12 +10,12 @@ CLIENT_ID = "b0a2b9b464de4ec3bafad3e0707746ec"
 
 #Get your client SECRET from the environment variable you set
 try:
-    CLIENT_SECRET = os.environ['SPOTIPY_CLIENT_SECRET']
+    CLIENT_SECRET = os.getenv('SPOTIPY_CLIENT_SECRET')
 except KeyError as e:
 	print("/!\   Your client SECRET has to be set !             /!\ ")
 	print("/!\   Use this command to set it:                    /!\ ")
 	print("/!\           export SPOTIPY_CLIENT_SECRET=' ... '   /!\ ")
-    
+
 
 #Port and callback url can be changed or ledt to localhost:5000
 PORT = "5000"
