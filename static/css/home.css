@@ -13,3 +13,8 @@
 	border-radius: 3px;
 	background-color: #EBEBEB;
 }
+
+.navbar-nav > li{
+  margin-left:10px;
+  margin-right:10px;
+}
