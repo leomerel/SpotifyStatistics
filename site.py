@@ -63,8 +63,12 @@ def topTracks():
 def recentlyPlayed():
 	global spotifyObject
 	return render_template("recentlyPlayed.html",
-	 recentTracks=spotifyStatistics.recently_played_tracks(spotifyObject),
-	 title="Recently played tracks")
+	 recentTracks=spotifyStatistics.recently_played_tracks(spotifyObject))
+
+
+@app.route("/charts")
+def charts():
+	return render_template("charts.html", playlists = spotifyStatistics.user_playlists(spotifyObject))
 
 if __name__ == "__main__":
 	app.run()

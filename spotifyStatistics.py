@@ -26,6 +26,13 @@ class RecentTrack(Track):
         Track.__init__(self, id, name, artist, imageUrl, popularity)
         self.played_at = played_at
 
+class Playlist():
+	def __init__(self, id, name, imageUrl, description):
+		self.id = id
+		self.name = name
+		self.imageUrl = imageUrl
+		self.description = description
+
 
         
 
@@ -91,3 +98,18 @@ def top_tracks(spotifyObject, limit, time_range):
 		track_list.append(track)
 
 	return track_list
+
+
+def user_playlists(spotifyObject):
+	user_playlists = spotifyObject.current_user_playlists()
+	user_playlists = user_playlists['items']
+
+	playlist_list = list()
+	for item in user_playlists:
+		playlist = Playlist(item['id'], item['name'],item['images'][0]['url'], item['description'])
+		playlist_list.append(playlist)
+
+	return playlist_list
+
+
+#print(json.dumps(user_playlists, sort_keys=True, indent=4))
