@@ -1,15 +1,32 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<link rel="stylesheet" href="static/css/top.css?version=2" />
 {% endblock %}
 
 
 {% block body %}
-	<div class="container">
-		<h1>{{title}}</h1>
-		{% for x in recentTracks %}
-		<p>{{x}}</p>
-		{% endfor %}
+<div class="container container-lm-1">
+	<div>
+		<h1 class="topText">Recently played tracks</h1>
 	</div>
+	<div class="tab-content tab-content-lm-1" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-4weeks" role="tabpanel" aria-labelledby="nav-4weeks-tab">
+			{% for x in recentTracks %}
+			<div class="row-tracks-lm-1">
+				<div class="col-1-track-index vertically-centered-text">
+					<p class="track-index">{{loop.index}}.</p>
+				</div>
+			    <div class="col-1 div-album-img">
+		    		<img src={{x.imageUrl}} class="artist-img"> 
+				</div>
+			    <div class="col-4 vertically-centered-text">{{x.name[0:40]}}</div>
+			    <div class="col-3 vertically-centered-text">{{x.artist}}</div>
+			    <div class="col-3 vertically-centered-text">{{x.played_at[0]}}   at   {{x.played_at[1]}} (UTC)</div>
+
+			</div>
+			{% endfor %}
+		</div>
+	</div>	
+</div>
 {% endblock %}
