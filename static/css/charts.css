@@ -30,7 +30,8 @@
 
 .row-tracks-lm-1:hover{
     border-radius: 3px;
-	background-color: #EBEBEB;
+	background-color: #36BF0015 !important;
+	cursor :  pointer;
 }
 
 .div-arrow{

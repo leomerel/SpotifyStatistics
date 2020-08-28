@@ -11,9 +11,9 @@
 		<h1 class="topText">Charts on your playlists</h1>
 	</div>
 	<div class="tab-content-lm-1">
-		<div class="playlists-lm-1">
+		<div class="playlists-lm-1" id="playlist-list">
 			{% for x in playlists %}
-			<div class="row-tracks-lm-1">
+			<div class="row-tracks-lm-1" onclick="selectPlaylist(this)">
 			    <div class="col-2 div-album-img">
 		    		<img class="playlist-img" src={{x.imageUrl}}> 
 				</div>
