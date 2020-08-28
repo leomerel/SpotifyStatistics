@@ -24,6 +24,8 @@
     padding-top: 10px;
     padding-right: 5px;
     padding-left: 5px;
+    justify-content: center;
+	align-items: center;
 }
 
 .row-tracks-lm-1:hover{
@@ -32,8 +34,14 @@
 }
 
 .div-arrow{
-	display: none;
-	/*padding-top: 4px;*/
+	display: flex; /*none makes the div bigger when hovered*/
+	align-items: center;
+}
+
+.svg-arrow
+{
+  margin: 0 auto;
+  display: block;
 }
 
 .row-tracks-lm-1:hover .div-arrow{
