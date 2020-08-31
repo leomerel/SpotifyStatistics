@@ -59,14 +59,22 @@ def recently_played_tracks(spotifyObject):
 	recently_played = recently_played['items']
 
 	recent_track_list = list()
+	track_ids = list()
+
 	for item in recently_played:
-		track = spotifyObject.track(item['track']['id'])
+		track_ids.append(item['track']['id'])
+
+	tracks = spotifyObject.tracks(track_ids)
+	tracks = tracks['tracks']
+	
+	i = 0
+	for item in recently_played:
 		p = item['played_at']
 		p = p.split("T")
 		played_at = [p[0], p[1][:-5]]
-		recent_track = RecentTrack(item['track']['id'], item['track']['name'], item['track']['artists'][0]['name'], track['album']['images'][0]['url'], track['popularity'], played_at)
+		recent_track = RecentTrack(item['track']['id'], item['track']['name'], item['track']['artists'][0]['name'], tracks[i]['album']['images'][0]['url'], tracks[i]['popularity'], played_at)
 		recent_track_list.append(recent_track)
-
+		i+=1
 	return recent_track_list
 
 
